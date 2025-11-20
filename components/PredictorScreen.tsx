@@ -57,20 +57,20 @@ const LimitReachedView = React.memo(({ handleDepositRedirect }: { handleDepositR
 
   return (
      <div 
-        className="w-full h-screen flex flex-col font-poppins relative overflow-hidden items-center justify-center p-4 bg-[#0088ff]"
+        className="w-full h-screen flex flex-col font-poppins relative overflow-hidden items-center justify-center p-4"
       >
         {/* Gradient Background matching reference */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#3b82f6] to-[#0284c7] z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#38bdf8] to-[#0284c7] z-0"></div>
 
-        <div className="w-full max-w-sm bg-[#082f49]/40 backdrop-blur-md rounded-2xl p-8 border border-[#38bdf8]/20 text-center shadow-2xl z-10">
-            <h1 className="text-3xl font-russo uppercase text-white mb-4" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+        <div className="w-full max-w-sm bg-[#0b2545] rounded-2xl p-8 border-b-4 border-[#06162d] text-center shadow-2xl z-10">
+            <h1 className="text-2xl font-russo uppercase text-[#38bdf8] mb-4 tracking-wide">
                 {t('reDepositMessageTitle')}
             </h1>
-            <p className="text-white/90 font-poppins text-sm leading-relaxed mb-8">{t('limitReachedText')}</p>
+            <p className="text-gray-300 font-poppins text-sm leading-relaxed mb-8">{t('limitReachedText')}</p>
             
             <button 
                 onClick={handleDepositRedirect}
-                className="w-full py-4 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-russo text-xl uppercase rounded-xl transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-green-900/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                className="w-full py-4 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-russo text-xl uppercase rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
             >
                 {t('depositNow')}
             </button>
@@ -371,7 +371,7 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
   }
   
   return (
-    <div className="w-full min-h-screen bg-gray-900">
+    <div className="w-full min-h-screen bg-transparent">
       {isGuideOpen && <GuideModal onClose={() => setIsGuideOpen(false)} />}
       {showAdminModal && <AdminAuthModal onSuccess={handleAdminSuccess} onClose={handleAdminClose} />}
       <Sidebar 

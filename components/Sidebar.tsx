@@ -61,7 +61,7 @@ const NavButton: React.FC<{onClick: () => void; disabled?: boolean; children: Re
    <button 
       onClick={onClick}
       disabled={disabled}
-      className="group flex w-full items-center gap-4 p-3 rounded-lg text-left text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="group flex w-full items-center gap-4 p-3 rounded-lg text-left text-white/80 hover:bg-[#0ea5e9]/20 hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
   >
       {children}
   </button>
@@ -117,7 +117,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
             className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             onClick={onClose}
         />
-        <div className={`fixed top-0 left-0 h-full w-72 bg-[#082f49] border-r border-[#38bdf8]/20 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
+        <div className={`fixed top-0 left-0 h-full w-72 bg-[#0b2545] border-r-4 border-[#06162d] text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
             <input
                 type="file"
                 ref={fileInputRef}
@@ -125,12 +125,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                 accept="image/*"
                 className="hidden"
             />
-            <div className="flex-shrink-0 bg-[#0c4a6e]/50 p-4 pt-6 border-b border-[#38bdf8]/10">
+            <div className="flex-shrink-0 bg-[#06162d]/30 p-4 pt-6 border-b border-[#1e293b]">
                 <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
                         <button
                             onClick={handleProfilePicClick}
-                            className="w-12 h-12 flex-shrink-0 bg-[#083344] border-2 border-[#38bdf8]/30 rounded-full group relative disabled:cursor-not-allowed flex items-center justify-center"
+                            className="w-12 h-12 flex-shrink-0 bg-[#0b2545] border-2 border-[#38bdf8] rounded-full group relative disabled:cursor-not-allowed flex items-center justify-center overflow-hidden"
                             disabled={!isLoggedIn}
                             aria-label={t('changeProfilePic')}
                         >
@@ -146,8 +146,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                             )}
                         </button>
                         <div>
-                            <p className="font-bold text-lg text-white truncate max-w-40">{playerId ? t('welcomeUser', {playerId}) : t('welcome')}</p>
-                            <p className="text-sm text-[#38bdf8]/80 font-poppins">Mines Predictor Pro</p>
+                            <p className="font-bold text-lg text-white truncate max-w-40 font-russo">{playerId ? t('welcomeUser', {playerId}) : t('welcome')}</p>
+                            <p className="text-xs text-[#38bdf8] font-poppins uppercase tracking-wider">Mines Predictor Pro</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-1 -mt-1 -mr-1 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-colors">
@@ -157,7 +157,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
             </div>
             
             <nav className="flex-grow overflow-y-auto px-2 py-4">
-                <div className="flex flex-col space-y-1">
+                <div className="flex flex-col space-y-2 font-poppins">
                     <NavButton
                         onClick={() => onNavigate('predictor')}
                         disabled={!isLoggedIn}
@@ -175,7 +175,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                         <div>
                              <button
                                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                                className="group flex w-full items-center justify-between gap-4 p-3 rounded-lg text-left text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200"
+                                className="group flex w-full items-center justify-between gap-4 p-3 rounded-lg text-left text-white/80 hover:bg-[#0ea5e9]/20 hover:text-white transition-colors duration-200"
                             >
                                 <div className="flex items-center gap-4">
                                     <LanguageIcon className="w-6 h-6 text-white/50 transition-colors group-hover:text-[#38bdf8]" />
@@ -191,7 +191,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                                         <button
                                             key={lang.code}
                                             onClick={() => handleLanguageSelect(lang.code)}
-                                            className={`w-full text-left p-2 rounded-md text-sm transition-colors ${language === lang.code ? 'bg-[#0c4a6e]/50 text-[#38bdf8] font-bold' : 'text-gray-300 hover:bg-white/10'}`}
+                                            className={`w-full text-left p-2 rounded-md text-sm transition-colors ${language === lang.code ? 'bg-[#0ea5e9]/20 text-[#38bdf8] font-bold' : 'text-gray-300 hover:bg-white/10'}`}
                                         >
                                             {lang.flag} {lang.name}
                                         </button>
@@ -203,7 +203,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                 </div>
             </nav>
             
-            <div className="p-2 border-t border-[#38bdf8]/20 flex-shrink-0">
+            <div className="p-2 border-t border-[#1e293b] flex-shrink-0 bg-[#06162d]/30">
                 <div className="flex items-center justify-between">
                     <div>
                         {isLoggedIn && (

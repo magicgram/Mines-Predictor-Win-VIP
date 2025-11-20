@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -53,10 +52,8 @@ const GuideModal: React.FC<GuideModalProps> = ({ onClose }) => {
     };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col animate-fade-in font-poppins text-white p-4 bg-[#0088ff]" 
+    <div className="fixed inset-0 z-50 flex flex-col animate-fade-in font-poppins text-white p-4 bg-black/60 backdrop-blur-sm" 
       aria-modal="true" role="dialog">
-      {/* Gradient Background matching reference */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0ea5e9] via-[#0284c7] to-[#0c4a6e] z-0"></div>
 
       <style>{`
         @keyframes fade-in {
@@ -68,64 +65,64 @@ const GuideModal: React.FC<GuideModalProps> = ({ onClose }) => {
         }
       `}</style>
       
-      <div className="relative z-10 flex-grow w-full h-full flex flex-col">
-          <header className="w-full text-center pt-8 flex-shrink-0">
-              <h1 className="text-3xl font-russo tracking-wide uppercase" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>{t('howToGetAccess')}</h1>
-              <p className="text-white/80 mt-1">{t('followStepsToUnlock')}</p>
-          </header>
+      <div className="relative z-10 flex-grow w-full h-full flex flex-col items-center justify-center">
+          <div className="bg-[#0b2545] w-full max-w-lg rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] border-b-4 border-[#06162d] flex flex-col max-h-full overflow-hidden">
+              <header className="w-full text-center pt-8 pb-4 flex-shrink-0 bg-[#06162d]/30">
+                  <h1 className="text-2xl font-russo tracking-wide uppercase text-white">{t('howToGetAccess')}</h1>
+                  <p className="text-white/60 mt-1 text-sm">{t('followStepsToUnlock')}</p>
+              </header>
 
-          <main className="flex-grow overflow-y-auto py-4">
-              <div className="max-w-lg mx-auto bg-[#082f49]/40 backdrop-blur-md rounded-2xl p-6 shadow-lg space-y-6 border border-[#38bdf8]/20">
-                <div className="space-y-3 text-white/90">
+              <main className="flex-grow overflow-y-auto p-6">
+                  <div className="space-y-6 text-white/90">
                     <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">1.</div>
-                        <p className="pt-1">{t('guideStep1')}</p>
+                        <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#38bdf8] text-[#0b2545] font-bold font-russo">1</div>
+                        <p className="pt-1 text-sm font-medium">{t('guideStep1')}</p>
                     </div>
                     <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">2.</div>
-                        <p className="pt-1">{t('guideStep2')}</p>
+                        <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#38bdf8] text-[#0b2545] font-bold font-russo">2</div>
+                        <p className="pt-1 text-sm font-medium">{t('guideStep2')}</p>
                     </div>
                     <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">3.</div>
-                        <p className="pt-1">{t('guideStep3')}</p>
+                        <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#38bdf8] text-[#0b2545] font-bold font-russo">3</div>
+                        <p className="pt-1 text-sm font-medium">{t('guideStep3')}</p>
                     </div>
                     <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">4.</div>
+                        <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#38bdf8] text-[#0b2545] font-bold font-russo">4</div>
                         <div className="flex-grow">
-                          <p>{t('guideStep4')}</p>
-                          <div className="mt-2 flex items-center justify-between bg-[#083344]/60 p-2 rounded-md border border-[#38bdf8]/30">
-                              <span className="font-mono text-lg text-[#38bdf8] font-bold">{promoCode}</span>
-                              <button onClick={handleCopy} className="p-1 text-gray-300 hover:text-white transition-colors" aria-label={t('copyPromocode')}>
+                          <p className="text-sm font-medium">{t('guideStep4')}</p>
+                          <div className="mt-2 flex items-center justify-between bg-[#06162d] p-3 rounded-xl border border-[#1e293b]">
+                              <span className="font-russo text-xl text-[#38bdf8] tracking-wider">{promoCode}</span>
+                              <button onClick={handleCopy} className="p-2 bg-[#1e293b] rounded-lg text-gray-300 hover:text-white hover:bg-[#334155] transition-colors" aria-label={t('copyPromocode')}>
                                   {copied ? <CheckIcon className="w-5 h-5 text-green-400" /> : <CopyIcon className="w-5 h-5" />}
                               </button>
                           </div>
                         </div>
                     </div>
-                </div>
+                  </div>
             
-                <div className="w-full h-px bg-white/20 my-6"></div>
+                  <div className="w-full h-px bg-white/10 my-6"></div>
 
-                <div>
-                    <h2 className="text-xl font-bold text-center text-white mb-4 uppercase">{t('howToFindPlayerId')}</h2>
-                    <div className="space-y-3 text-white/90">
-                        <div className="flex items-start gap-4"><div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">1.</div><p className="pt-1">{t('playerIdStep1')}</p></div>
-                        <div className="flex items-start gap-4"><div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">2.</div><p className="pt-1">{t('playerIdStep2')}</p></div>
-                        <div className="flex items-start gap-4"><div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">3.</div><p className="pt-1">{t('playerIdStep3')}</p></div>
-                        <div className="flex items-start gap-4"><div className="flex-shrink-0 pt-1 font-bold text-[#38bdf8] text-2xl">4.</div><p className="pt-1">{t('playerIdStep4')}</p></div>
-                    </div>
-                </div>
-              </div>
-          </main>
-        
-          <footer className="w-full flex items-center justify-center mt-auto flex-shrink-0 pb-4">
-            <button
-            onClick={onClose}
-            className="w-full max-w-xs py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-black/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
-            aria-label={t('closeGuide')}
-            >
-            {t('gotIt')}
-            </button>
-          </footer>
+                  <div>
+                      <h2 className="text-lg font-bold text-center text-white mb-4 uppercase font-russo">{t('howToFindPlayerId')}</h2>
+                      <div className="space-y-3 text-gray-300 text-sm">
+                          <div className="flex items-start gap-3"><div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#1e293b] text-[#38bdf8] text-xs font-bold">1</div><p className="pt-0.5">{t('playerIdStep1')}</p></div>
+                          <div className="flex items-start gap-3"><div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#1e293b] text-[#38bdf8] text-xs font-bold">2</div><p className="pt-0.5">{t('playerIdStep2')}</p></div>
+                          <div className="flex items-start gap-3"><div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#1e293b] text-[#38bdf8] text-xs font-bold">3</div><p className="pt-0.5">{t('playerIdStep3')}</p></div>
+                          <div className="flex items-start gap-3"><div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#1e293b] text-[#38bdf8] text-xs font-bold">4</div><p className="pt-0.5">{t('playerIdStep4')}</p></div>
+                      </div>
+                  </div>
+              </main>
+            
+              <footer className="w-full p-6 bg-[#06162d]/30">
+                <button
+                onClick={onClose}
+                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                aria-label={t('closeGuide')}
+                >
+                {t('gotIt')}
+                </button>
+              </footer>
+          </div>
       </div>
     </div>
   );

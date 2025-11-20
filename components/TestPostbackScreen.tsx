@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import * as authService from '../services/authService';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -90,9 +89,9 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
   
   if (showGuide) {
       return (
-        <div className="w-full h-screen text-white flex flex-col p-4 relative bg-[#0088ff]">
+        <div className="w-full h-screen text-white flex flex-col p-4 relative">
             {/* Gradient Background matching reference */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0ea5e9] via-[#0284c7] to-[#0c4a6e] z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#38bdf8] to-[#0284c7] z-0"></div>
             <div className="relative z-10 w-full h-full">
                 <PostbackGuide onBack={() => setShowGuide(false)} />
             </div>
@@ -101,13 +100,13 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
   }
 
   return (
-    <div className="w-full h-screen text-white flex flex-col font-poppins p-4 relative bg-[#0088ff]">
+    <div className="w-full h-screen text-white flex flex-col font-poppins p-4 relative">
         {/* Gradient Background matching reference */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0ea5e9] via-[#0284c7] to-[#0c4a6e] z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#38bdf8] to-[#0284c7] z-0"></div>
         
-        <header className="flex items-center flex-shrink-0 text-white z-10">
+        <header className="flex items-center flex-shrink-0 text-[#001e3c] z-10 mb-4">
             <div className="w-10">
-            <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-white/20" aria-label={t('goBack')}>
+            <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-black/10" aria-label={t('goBack')}>
                 <ArrowLeftIcon className="w-6 h-6" />
             </button>
             </div>
@@ -115,9 +114,9 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
             <div className="w-10"></div>
         </header>
 
-        <main className="flex-grow overflow-y-auto py-4 z-10">
-          <div className="max-w-md mx-auto bg-[#082f49]/40 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-[#38bdf8]/20">
-            <p className="text-center text-white/80 text-sm mb-4 font-poppins">
+        <main className="flex-grow overflow-y-auto py-2 z-10">
+          <div className="max-w-md mx-auto bg-[#0b2545] rounded-2xl p-6 shadow-lg border-b-4 border-[#06162d]">
+            <p className="text-center text-gray-300 text-sm mb-4 font-poppins">
               {t('postbackToolDescription')}
             </p>
             
@@ -141,17 +140,17 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                   placeholder="testuser123"
-                  className="mt-2 w-full px-4 py-3 bg-[#083344]/60 border border-[#38bdf8]/30 text-white placeholder-gray-400 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
+                  className="mt-2 w-full px-4 py-3 bg-[#06162d] border border-[#1e293b] text-white placeholder-gray-500 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
                 />
               </div>
               
               {error && (
-                  <div className="p-3 rounded-lg text-center text-sm bg-red-500/50 text-white border border-red-400/50 font-poppins">
+                  <div className="p-3 rounded-lg text-center text-sm bg-red-500 text-white border-b-4 border-red-800 font-poppins font-bold">
                       {error}
                   </div>
               )}
               {message && (
-                  <div className="p-3 rounded-lg text-center text-sm bg-green-500/50 text-white border border-green-400/50 font-poppins">
+                  <div className="p-3 rounded-lg text-center text-sm bg-green-500 text-white border-b-4 border-green-800 font-poppins font-bold">
                       {message}
                   </div>
               )}
@@ -159,21 +158,21 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
               <button
                 onClick={() => handleAction(authService.testRegistration)}
                 disabled={isLoading}
-                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg shadow-black/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
               >
                 {t('testRegistration')}
               </button>
               <button
                 onClick={() => handleAction(authService.testFirstDeposit, 10)}
                 disabled={isLoading}
-                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg shadow-black/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
               >
                 {t('testFirstDeposit')}
               </button>
               <button
                 onClick={() => handleAction(authService.testReDeposit, 5)}
                 disabled={isLoading}
-                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg shadow-black/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
               >
                 {t('testReDeposit')}
               </button>
@@ -183,7 +182,7 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
               <button
                 onClick={() => handleAction(authService.clearUserData)}
                 disabled={isLoading}
-                className="w-full py-3 bg-transparent border-2 border-white text-white font-poppins font-bold text-lg uppercase rounded-full transition-all hover:bg-white/10 active:scale-95 disabled:opacity-50"
+                className="w-full py-3 bg-[#06162d] border-b-4 border-white/20 text-white font-poppins font-bold text-lg uppercase rounded-full transition-all hover:bg-[#082f49] active:border-b-0 active:translate-y-1 disabled:opacity-50"
               >
                 {t('clearUserData')}
               </button>
@@ -192,7 +191,7 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
             {/* --- NEW PROMO CODE SECTION --- */}
             <div className="w-1/2 h-px bg-white/20 my-6 mx-auto"></div>
             <div className="space-y-4 pb-4">
-              <h2 className="text-center font-bold text-lg text-white">{t('updatePromoCode')}</h2>
+              <h2 className="text-center font-bold text-lg text-white uppercase font-russo">{t('updatePromoCode')}</h2>
               <div>
                 <label htmlFor="newPromoCode" className="text-sm font-semibold text-white/90 font-poppins">
                   {t('newPromoCode')}
@@ -203,7 +202,7 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
                   value={newPromoCode}
                   onChange={(e) => setNewPromoCode(e.target.value)}
                   placeholder="NEWPROMO25"
-                  className="mt-2 w-full px-4 py-3 bg-[#083344]/60 border border-[#38bdf8]/30 text-white placeholder-gray-400 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
+                  className="mt-2 w-full px-4 py-3 bg-[#06162d] border border-[#1e293b] text-white placeholder-gray-500 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
                 />
               </div>
               <div>
@@ -216,17 +215,17 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
                   value={adminPassword}
                   onChange={(e) => setAdminPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="mt-2 w-full px-4 py-3 bg-[#083344]/60 border border-[#38bdf8]/30 text-white placeholder-gray-400 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
+                  className="mt-2 w-full px-4 py-3 bg-[#06162d] border border-[#1e293b] text-white placeholder-gray-500 font-poppins text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#38bdf8] transition"
                 />
               </div>
 
               {updateError && (
-                <div className="p-3 rounded-lg text-center text-sm bg-red-500/50 text-white border border-red-400/50 font-poppins">
+                <div className="p-3 rounded-lg text-center text-sm bg-red-500 text-white font-bold border-b-4 border-red-800 font-poppins">
                   {updateError}
                 </div>
               )}
               {updateMessage && (
-                <div className="p-3 rounded-lg text-center text-sm bg-green-500/50 text-white border border-green-400/50 font-poppins">
+                <div className="p-3 rounded-lg text-center text-sm bg-green-500 text-white font-bold border-b-4 border-green-800 font-poppins">
                   {updateMessage}
                 </div>
               )}
@@ -234,7 +233,7 @@ const TestPostbackScreen: React.FC<TestPostbackScreenProps> = ({ onBack }) => {
               <button
                 onClick={handleUpdatePromoCode}
                 disabled={isUpdating}
-                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg shadow-black/30 border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
+                className="w-full py-3 bg-gradient-to-r from-[#4ade80] to-[#16a34a] text-[#064e3b] font-poppins font-bold text-lg uppercase rounded-full transition-all hover:brightness-110 active:scale-95 disabled:opacity-50 shadow-lg border-b-4 border-[#14532d] active:border-b-0 active:translate-y-1"
               >
                 {isUpdating ? t('updating') : t('updatePromocodeButton')}
               </button>

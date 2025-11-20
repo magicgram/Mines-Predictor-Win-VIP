@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen font-sans bg-[#0c4a6e]">
+      <div className="min-h-screen font-sans">
         {user ? (
           <PredictorScreen 
             user={user} 
