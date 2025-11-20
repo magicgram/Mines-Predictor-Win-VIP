@@ -93,14 +93,30 @@ const PredictorView = React.memo((props: {
     confidence: number | null;
     isLoading: boolean;
 }) => {
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
     return (
         <div className="w-full min-h-screen flex flex-col relative font-poppins overflow-hidden bg-[#0ea5e9]">
             {/* Enhanced Blue Background to match reference */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#38bdf8] to-[#0284c7] z-0"></div>
 
             {/* Top Bar */}
-            <header className="w-full flex justify-between items-start p-5 z-10">
-                <div className="flex-1"></div>
+            <header className="w-full flex justify-between items-center p-5 z-10">
+                <div className="bg-[#0b2545] border-2 border-[#06162d] rounded-xl px-4 py-2 shadow-lg backdrop-blur-sm bg-opacity-80">
+                    <div className="text-[10px] text-[#38bdf8] font-russo uppercase tracking-widest leading-none mb-1">REAL TIME</div>
+                    <div className="text-white font-mono font-bold text-lg leading-none tracking-wide">
+                        {formattedTime}
+                    </div>
+                </div>
                 
                 <div className="flex items-center gap-3">
                     <button onClick={props.onOpenGuide} className="p-2 rounded-full bg-black/10 text-[#001e3c] hover:bg-black/20 transition active:scale-90">
@@ -406,4 +422,3 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
 };
 
 export default React.memo(PredictorScreen);
-    
