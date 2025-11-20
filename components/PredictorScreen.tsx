@@ -39,12 +39,12 @@ const PlayIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-// Custom Star Icon - Updated to remove padding so container controls size
+// Custom Star Icon
 const StarIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" className="w-full h-full drop-shadow-sm">
     <path 
         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" 
-        fill="#ffffff" 
+        fill="#fbbf24" 
         stroke="none"
     />
   </svg>
@@ -60,7 +60,7 @@ const LimitReachedView = React.memo(({ handleDepositRedirect }: { handleDepositR
         className="w-full h-screen flex flex-col font-poppins relative overflow-hidden items-center justify-center p-4 bg-[#0088ff]"
       >
         {/* Gradient Background matching reference */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0ea5e9] via-[#0284c7] to-[#0c4a6e] z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#3b82f6] to-[#0284c7] z-0"></div>
 
         <div className="w-full max-w-sm bg-[#082f49]/40 backdrop-blur-md rounded-2xl p-8 border border-[#38bdf8]/20 text-center shadow-2xl z-10">
             <h1 className="text-3xl font-russo uppercase text-white mb-4" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
@@ -87,67 +87,64 @@ const PredictorView = React.memo((props: {
     gridState: GridItemType[];
     selectedTraps: number;
     setSelectedTraps: (val: number) => void;
-    isSignalActive: boolean; // True means signal is shown (Get Signal LOCKED, Refresh UNLOCKED)
+    isSignalActive: boolean;
     onGetSignal: () => void;
     onRefresh: () => void;
     confidence: number | null;
     isLoading: boolean;
 }) => {
     return (
-        <div className="w-full min-h-screen flex flex-col relative font-poppins overflow-hidden bg-[#0088ff]">
-            {/* Gradient Background matching reference */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0ea5e9] via-[#0284c7] to-[#0c4a6e] z-0"></div>
+        <div className="w-full min-h-screen flex flex-col relative font-poppins overflow-hidden bg-[#0ea5e9]">
+            {/* Enhanced Blue Background to match reference */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#38bdf8] to-[#0284c7] z-0"></div>
 
             {/* Top Bar */}
             <header className="w-full flex justify-between items-start p-5 z-10">
-                 {/* Menu Button (Left in some designs, but keeping consistent with user request 'top right') */}
                 <div className="flex-1"></div>
                 
-                {/* Guide and Menu (Top Right as requested) */}
                 <div className="flex items-center gap-3">
-                    <button onClick={props.onOpenGuide} className="p-2 rounded-full bg-black/20 text-white hover:bg-black/30 transition active:scale-90">
-                        <GuideIcon className="w-7 h-7 drop-shadow-md" />
+                    <button onClick={props.onOpenGuide} className="p-2 rounded-full bg-black/10 text-[#001e3c] hover:bg-black/20 transition active:scale-90">
+                        <GuideIcon className="w-7 h-7" />
                     </button>
-                    <button onClick={props.onOpenSidebar} className="p-2 rounded-full bg-black/20 text-white hover:bg-black/30 transition active:scale-90">
-                        <MenuIcon className="w-7 h-7 drop-shadow-md" />
+                    <button onClick={props.onOpenSidebar} className="p-2 rounded-full bg-black/10 text-[#001e3c] hover:bg-black/20 transition active:scale-90">
+                        <MenuIcon className="w-7 h-7" />
                     </button>
                 </div>
             </header>
 
             <main className="flex-grow flex flex-col items-center w-full max-w-md mx-auto px-4 z-10 relative -mt-8">
                 
-                {/* Title Area with Animation */}
+                {/* Title Area - Dark text matching reference */}
                 <div className="mb-6 text-center">
-                    <h2 className="font-black text-4xl md:text-5xl text-[#0c4a6e] opacity-30 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 select-none blur-[1px]">
+                    <h1 className="font-russo text-5xl text-[#001e3c] tracking-wide leading-none drop-shadow-sm opacity-90">
                         MINES
-                    </h2>
-                    <h1 className="relative font-russo text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#cceeff] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] tracking-wide animate-pulse-slow text-center leading-tight">
-                        MINES<br/>
-                        <span className="text-3xl md:text-4xl">PREDICTOR PRO</span>
                     </h1>
+                    <h2 className="font-russo text-3xl md:text-4xl text-[#001e3c] tracking-wide leading-none drop-shadow-sm opacity-90">
+                        PREDICTOR PRO
+                    </h2>
                 </div>
 
-                {/* 5x5 Grid */}
-                <div className="bg-[#082f49]/40 p-3 rounded-2xl border border-[#bae6fd]/20 shadow-2xl backdrop-blur-sm w-full aspect-square max-w-[360px] mb-6">
-                    <div className="grid grid-cols-5 grid-rows-5 gap-2 w-full h-full">
+                {/* 5x5 Grid - Dark squares with blue dots */}
+                <div className="p-2 rounded-2xl w-full aspect-square max-w-[350px] mb-6">
+                    <div className="grid grid-cols-5 grid-rows-5 gap-3 w-full h-full">
                         {props.gridState.map((item, index) => (
                             <div 
                                 key={index}
                                 className={`
-                                    relative w-full h-full rounded-lg flex items-center justify-center overflow-hidden
-                                    border-t border-l border-r border-b-[4px]
-                                    ${item === 'star' 
-                                        ? 'bg-gradient-to-b from-[#fbbf24] to-[#f59e0b] border-t-[#ffffff]/50 border-l-[#fcd34d] border-r-[#fcd34d] border-b-[#b45309]' 
-                                        : 'bg-[#0c4a6e] border-t-[#38bdf8]/30 border-l-[#38bdf8]/10 border-r-[#38bdf8]/10 border-b-[#062c44]'
-                                    }
+                                    relative w-full h-full rounded-lg flex items-center justify-center overflow-visible
+                                    transition-all duration-300
+                                    bg-[#0b2545]
+                                    shadow-[0_4px_0_#06162d]
                                 `}
                             >
+                                {/* Standard State: Blue Dot */}
                                 {(item === 'empty' || item === 'mine') && (
-                                    <div className="w-3 h-3 rounded-full bg-[#0ea5e9]/40 shadow-inner"></div>
+                                    <div className="w-4 h-4 rounded-full bg-[#38bdf8] shadow-[0_0_8px_rgba(56,189,248,0.6)]"></div>
                                 )}
                                 
+                                {/* Signal State: Star */}
                                 {item === 'star' && (
-                                    <div className="w-[65%] h-[65%] flex items-center justify-center animate-pop-in">
+                                    <div className="w-[70%] h-[70%] flex items-center justify-center animate-pop-in z-10">
                                         <StarIcon />
                                     </div>
                                 )}
@@ -156,19 +153,19 @@ const PredictorView = React.memo((props: {
                     </div>
                 </div>
 
-                {/* Trap Selection Buttons */}
-                <div className="flex justify-between w-full max-w-[360px] gap-3 mb-5">
+                {/* Trap Selection Buttons - Blue Pill Shape */}
+                <div className="flex justify-between w-full max-w-[350px] gap-3 mb-6">
                     {[1, 3, 5].map((traps) => (
                         <button
                             key={traps}
                             onClick={() => !props.isSignalActive && props.setSelectedTraps(traps)}
                             disabled={props.isSignalActive}
                             className={`
-                                flex-1 py-2.5 rounded-full font-russo text-sm md:text-base tracking-wider transition-all duration-200 border
+                                flex-1 py-2.5 rounded-full font-russo text-lg tracking-wider transition-all duration-200 border-b-4
                                 ${props.selectedTraps === traps 
-                                    ? 'bg-[#0ea5e9] border-white/50 text-white shadow-[0_0_15px_rgba(14,165,233,0.6)] scale-105' 
-                                    : 'bg-[#0c4a6e] border-[#075985] text-gray-400 hover:bg-[#0f5c85]'}
-                                ${props.isSignalActive ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}
+                                    ? 'bg-[#0284c7] border-[#075985] text-white shadow-lg translate-y-[1px]' 
+                                    : 'bg-[#38bdf8] border-[#0284c7] text-[#0c4a6e] hover:brightness-110'}
+                                ${props.isSignalActive ? 'opacity-80 cursor-not-allowed' : 'active:scale-95 active:border-b-0 active:translate-y-1'}
                             `}
                         >
                             {traps} TRAPS
@@ -177,30 +174,30 @@ const PredictorView = React.memo((props: {
                 </div>
 
                 {/* Controls */}
-                <div className="w-full max-w-[360px] flex gap-3 mb-5 h-[64px]">
-                    {/* Refresh Button */}
+                <div className="w-full max-w-[350px] flex gap-3 mb-6 h-[60px]">
+                    {/* Refresh Button - Circular Blue */}
                     <button
                         onClick={props.onRefresh}
-                        disabled={!props.isSignalActive} // Only enabled when signal is showing
+                        disabled={!props.isSignalActive} 
                         className={`
-                            h-full aspect-square rounded-2xl flex items-center justify-center border-b-4 transition-all
+                            h-full aspect-square rounded-full flex items-center justify-center border-b-4 transition-all
                             ${props.isSignalActive 
-                                ? 'bg-[#3b82f6] border-[#1d4ed8] text-white shadow-lg active:border-b-0 active:translate-y-1 hover:brightness-110 cursor-pointer' 
-                                : 'bg-[#1e293b] border-[#0f172a] text-gray-600 cursor-not-allowed'}
+                                ? 'bg-[#38bdf8] border-[#0284c7] text-[#0c4a6e] shadow-lg active:border-b-0 active:translate-y-1 hover:brightness-110 cursor-pointer' 
+                                : 'bg-[#64748b] border-[#475569] text-gray-400 cursor-not-allowed'}
                         `}
                     >
                         <RefreshIcon className={`w-8 h-8 ${props.isSignalActive ? 'animate-spin-once' : ''}`} />
                     </button>
 
-                    {/* Get Signal Button */}
+                    {/* Get Signal Button - Green Pill */}
                     <button
                         onClick={props.onGetSignal}
-                        disabled={props.isSignalActive || props.isLoading} // Locked when signal is active or loading
+                        disabled={props.isSignalActive || props.isLoading}
                         className={`
-                            flex-1 h-full rounded-2xl flex items-center justify-center gap-2 font-russo text-2xl tracking-wide border-b-4 transition-all shadow-xl
+                            flex-1 h-full rounded-full flex items-center justify-center gap-2 font-russo text-2xl tracking-wide border-b-4 transition-all shadow-xl
                             ${!props.isSignalActive && !props.isLoading
                                 ? 'bg-gradient-to-r from-[#4ade80] to-[#16a34a] border-[#14532d] text-[#064e3b] hover:brightness-110 active:border-b-0 active:translate-y-1'
-                                : 'bg-[#1e293b] border-[#0f172a] text-gray-500 cursor-not-allowed'}
+                                : 'bg-[#334155] border-[#1e293b] text-gray-500 cursor-not-allowed'}
                         `}
                     >
                         {props.isLoading ? (
@@ -218,11 +215,11 @@ const PredictorView = React.memo((props: {
                     </button>
                 </div>
 
-                {/* Confidence Meter */}
-                <div className="w-full max-w-[360px] bg-[#0c4a6e]/80 backdrop-blur rounded-xl border border-[#38bdf8]/30 py-3 px-6 text-center shadow-lg">
-                    <p className="font-russo text-lg text-white tracking-widest">
-                        CONFIDENCE:- <span className="text-[#4ade80] text-xl filter drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]">
-                            {props.confidence ? `${props.confidence}%` : '--%'}
+                {/* Confidence Meter - Dark Blue Pill */}
+                <div className="w-full max-w-[350px] bg-[#0284c7] border-b-4 border-[#075985] rounded-full py-3 px-6 text-center shadow-lg">
+                    <p className="font-russo text-xl text-white tracking-widest">
+                        CONFIDENCE:- <span className="text-white filter drop-shadow-sm">
+                            {props.confidence ? `${props.confidence}%` : '80%'}
                         </span>
                     </p>
                 </div>
@@ -237,13 +234,6 @@ const PredictorView = React.memo((props: {
                 }
                 .animate-pop-in {
                     animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-                }
-                @keyframes pulse-slow {
-                    0%, 100% { transform: scale(1); filter: brightness(1); }
-                    50% { transform: scale(1.02); filter: brightness(1.1); }
-                }
-                .animate-pulse-slow {
-                    animation: pulse-slow 3s infinite ease-in-out;
                 }
                 @keyframes spin-once {
                     from { transform: rotate(0deg); }
@@ -260,13 +250,13 @@ const PredictorView = React.memo((props: {
 const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => {
   const [predictionsLeft, setPredictionsLeft] = useState(user.predictionsLeft);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('predictor'); // 'predictor' or 'testPostback'
+  const [currentView, setCurrentView] = useState('predictor');
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
   const { t } = useLanguage();
 
   // Mines Specific State
-  const [selectedTraps, setSelectedTraps] = useState<number>(1); // Default to 1 trap
+  const [selectedTraps, setSelectedTraps] = useState<number>(1); 
   const [gridState, setGridState] = useState<GridItemType[]>(Array(25).fill('empty'));
   const [isSignalActive, setIsSignalActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -286,14 +276,12 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
     setProfilePic(newPicUrl);
   }, []);
 
-  // Logic to generate Mines signal
   const handleGetSignal = useCallback(async () => {
     if (isSignalActive || predictionsLeft <= 0 || isLoading) return;
 
     setIsLoading(true);
 
     try {
-      // 1. Consume Prediction via API
       const result = await usePrediction(user.playerId);
       if (!result.success) {
         alert(`${t('errorLabel')}: ${result.message || t('couldNotUsePrediction')}`);
@@ -303,53 +291,39 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
       
       setPredictionsLeft(prev => prev - 1);
 
-      // 2. Generate Grid Logic
-      // Random 70-99% confidence
       const randomConfidence = Math.floor(Math.random() * (99 - 70 + 1)) + 70;
       const totalCells = 25;
       let newGrid: GridItemType[] = Array(totalCells).fill('empty');
 
       if (selectedTraps === 1) {
-        // Special logic for 1 Trap: Randomly reveal 5 cells
         const allIndices = Array.from({ length: totalCells }, (_, i) => i);
-        
-        // Shuffle indices
         for (let i = allIndices.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
         }
-
         const selectedIndices = allIndices.slice(0, 5);
-        
         newGrid = newGrid.map((_, index) => {
           if (selectedIndices.includes(index)) return 'star';
           return 'empty';
         });
-
       } else {
-        // Existing logic for other trap counts (3, 5, etc.)
         const numberOfMines = selectedTraps;
         const allIndices = Array.from({ length: totalCells }, (_, i) => i);
-        
-        // Shuffle indices securely
         for (let i = allIndices.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
         }
-
         const mineIndices = allIndices.slice(0, numberOfMines);
-        
         newGrid = newGrid.map((_, index) => {
-          if (mineIndices.includes(index)) return 'mine'; // Boom
-          return 'star'; // Rest are stars
+          if (mineIndices.includes(index)) return 'mine';
+          return 'star';
         });
       }
 
-      // Simulate network delay for realism
       setTimeout(() => {
           setGridState(newGrid);
           setConfidence(randomConfidence);
-          setIsSignalActive(true); // This locks Get Signal and unlocks Refresh
+          setIsSignalActive(true);
           setIsLoading(false);
       }, 600);
 
@@ -360,10 +334,9 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
     }
   }, [user.playerId, isSignalActive, predictionsLeft, isLoading, t, selectedTraps]);
   
-  // Logic to reset the grid (Refresh button)
   const handleRefresh = useCallback(() => {
     setGridState(Array(25).fill('empty'));
-    setIsSignalActive(false); // This unlocks Get Signal and locks Refresh
+    setIsSignalActive(false);
     setConfidence(null);
   }, []);
 
