@@ -131,7 +131,7 @@ const PredictorView = React.memo((props: {
             <main className="flex-grow flex flex-col items-center w-full max-w-md mx-auto px-4 z-10 relative -mt-8">
                 
                 {/* Title Area - Dark text matching reference */}
-                <div className="mb-6 text-center">
+                <div className="mb-6 mt-8 text-center">
                     <h1 className="font-russo text-5xl text-[#001e3c] tracking-wide leading-none drop-shadow-sm opacity-90">
                         MINES
                     </h1>
