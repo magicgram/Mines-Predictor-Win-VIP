@@ -94,6 +94,7 @@ const PredictorView = React.memo((props: {
     isLoading: boolean;
 }) => {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const { t } = useLanguage();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -112,7 +113,7 @@ const PredictorView = React.memo((props: {
             {/* Top Bar */}
             <header className="w-full flex justify-between items-center p-5 z-10">
                 <div className="bg-[#0b2545] border-2 border-[#06162d] rounded-xl px-4 py-2 shadow-lg backdrop-blur-sm bg-opacity-80">
-                    <div className="text-[10px] text-[#38bdf8] font-russo uppercase tracking-widest leading-none mb-1">REAL TIME</div>
+                    <div className="text-[10px] text-[#38bdf8] font-russo uppercase tracking-widest leading-none mb-1">{t('realTime')}</div>
                     <div className="text-white font-mono font-bold text-lg leading-none tracking-wide">
                         {formattedTime}
                     </div>
@@ -184,7 +185,7 @@ const PredictorView = React.memo((props: {
                                 ${props.isSignalActive ? 'opacity-80 cursor-not-allowed' : 'active:scale-95 active:border-b-0 active:translate-y-1'}
                             `}
                         >
-                            {traps} TRAPS
+                            {traps} {t('traps')}
                         </button>
                     ))}
                 </div>
@@ -225,7 +226,7 @@ const PredictorView = React.memo((props: {
                         ) : (
                             <>
                                 <PlayIcon className="w-8 h-8" />
-                                GET SIGNAL
+                                {t('getSignal')}
                             </>
                         )}
                     </button>
@@ -234,7 +235,7 @@ const PredictorView = React.memo((props: {
                 {/* Confidence Meter - Dark Blue Pill */}
                 <div className="w-full max-w-[350px] bg-[#0284c7] border-b-4 border-[#075985] rounded-full py-3 px-6 text-center shadow-lg">
                     <p className="font-russo text-xl text-white tracking-widest">
-                        CONFIDENCE:- <span className="text-white filter drop-shadow-sm">
+                        {t('confidence')}:- <span className="text-white filter drop-shadow-sm">
                             {props.confidence ? `${props.confidence}%` : '80%'}
                         </span>
                     </p>
