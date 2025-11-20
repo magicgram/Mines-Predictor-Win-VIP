@@ -147,7 +147,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, onLogout
                         </button>
                         <div>
                             <p className="font-bold text-lg text-white truncate max-w-40 font-russo">{playerId ? t('welcomeUser', {playerId}) : t('welcome')}</p>
-                            <p className="text-xs text-[#38bdf8] font-poppins uppercase tracking-wider">Mines Predictor Pro</p>
+                            <p className="text-xs text-[#38bdf8] font-poppins uppercase tracking-wider">Mines Predictor VIP</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-1 -mt-1 -mr-1 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-colors">

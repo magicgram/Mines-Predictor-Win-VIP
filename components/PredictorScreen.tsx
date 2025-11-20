@@ -120,7 +120,7 @@ const PredictorView = React.memo((props: {
                         MINES
                     </h1>
                     <h2 className="font-russo text-3xl md:text-4xl text-[#001e3c] tracking-wide leading-none drop-shadow-sm opacity-90">
-                        PREDICTOR PRO
+                        PREDICTOR VIP
                     </h2>
                 </div>
 
@@ -406,3 +406,4 @@ const PredictorScreen: React.FC<PredictorScreenProps> = ({ user, onLogout }) => 
 };
 
 export default React.memo(PredictorScreen);
+    
